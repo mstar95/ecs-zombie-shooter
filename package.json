@@ -1,0 +1,22 @@
+{
+  "name": "ecs-zombie-shooter",
+  "version": "1.0.0",
+  "description": "An Entity Component System zombie survival game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mstar95/ecs-zombie-shooter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mstar95/ecs-zombie-shooter/issues"
+  },
+  "homepage": "https://github.com/mstar95/ecs-zombie-shooter#readme",
+  "dependencies": {
+    "npm": "^6.2.0"
+  }
+}
