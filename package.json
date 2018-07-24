@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/mstar95/ecs-zombie-shooter#readme",
   "dependencies": {
+    "ces": "0.0.4",
     "npm": "^6.2.0"
   },
   "devDependencies": {
