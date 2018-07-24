@@ -9,14 +9,14 @@ class RenderSystem extends CES.System {
 
     update () {
 
-        const entities = this.world.getEntities('position')
+        const entities = this.world.getEntities('position', 'sprite')
 
         entities.forEach(entity => {
             console.log(entity)
             const position = entity.getComponent('position')
-            ctx.beginPath();
-            ctx.arc(position.x, position.y, 50, 0, 2 * Math.PI);
-            ctx.stroke();
+            ctx.fillStyle = entity.getComponent('sprite').color
+            ctx.arc(position.x, position.y, 15, 0, 2 * Math.PI)
+            ctx.fill()
         })
     }
 }
