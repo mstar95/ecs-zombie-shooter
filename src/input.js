@@ -17,11 +17,11 @@ function right () {
   return keys[KEY_D] ? 1: 0
 }
 function up () {
-  return keys[KEY_W] ? 1 : 0
+  return keys[KEY_W] ? -1 : 0
 }
 
 function down () {
-  return keys[KEY_S] ? -1 : 0
+  return keys[KEY_S] ? 1 : 0
 }
 
 window.addEventListener('keydown', function (e) {
@@ -32,10 +32,10 @@ window.addEventListener('keyup', function (e) {
   keys[e.keyCode] = false
 }, true)
 
-function getX () {
+export function getX () {
   return left() + right()
 }
 
-function getY () {
+export function getY () {
   return up() + down()
 }

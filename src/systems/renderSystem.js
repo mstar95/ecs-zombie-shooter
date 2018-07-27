@@ -1,19 +1,19 @@
 import ECS from 'yagl-ecs'
-import { ctx } from '../canvas'
+import { ctx, HEIGHT, WIDTH } from '../canvas'
 
 class RenderSystem extends ECS.System {
 
-    constructor() {
-        super()
-       console.log(this)
-    }
     test (entity) {
-        console.log(entity)
         return !!entity.components.position && !!entity.components.sprite
+    }
+
+    preUpdate() {
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
     }
 
     update (entity) {
         const {position, sprite} = entity.components
+        ctx.beginPath();
         ctx.fillStyle = sprite.color
         ctx.arc(position.x, position.y, 15, 0, 2 * Math.PI)
         ctx.fill()

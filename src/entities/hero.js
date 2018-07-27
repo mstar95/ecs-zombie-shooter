@@ -4,6 +4,12 @@ import position from '../components/position'
 import heroComponent from '../components/hero'
 
 import { WIDTH, HEIGHT } from '../canvas'
+import movement from '../components/movement';
 export default function hero () {
-    return Entity(position(WIDTH / 2, HEIGHT / 2),  sprite("red"), heroComponent())
+    return Entity(
+        position(WIDTH / 2, HEIGHT / 2),
+        movement(5),
+        sprite("red"),
+        heroComponent()
+    )
 }
