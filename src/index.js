@@ -1,14 +1,18 @@
-import CES from 'ces'
+import ECS from 'yagl-ecs';
 
 import './style.css'
 import  hero  from './entities/hero';
 import  RenderSystem from './systems/RenderSystem';
 
-const world = new CES.World()
+const ecs = new ECS();
 
-world.addEntity(hero())
-world.addSystem(new RenderSystem())
+function gameLoop() {
+    ecs.update(); 
+    requestAnimationFrame(gameLoop);
+}
 
-requestAnimationFrame(function () {
-    world.update(/* interval */);
-})
+ecs.addEntity(hero())
+ecs.addSystem(new RenderSystem())
+
+
+gameLoop()

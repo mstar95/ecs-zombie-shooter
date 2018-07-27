@@ -1,12 +1,6 @@
-import CES from 'ces'
-
-class Position extends CES.Component {
-    constructor(x, y) {
-        super()
-        this.name = 'position'
-        this.x = x
-        this.y = y;
+export default function position(x, y) {
+    return {
+        name: 'position',
+        defaults: { x: x, y: y }
     }
 }
-
-export default Position

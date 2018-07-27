@@ -1,23 +1,22 @@
-import CES from 'ces'
+import ECS from 'yagl-ecs'
 import { ctx } from '../canvas'
 
-class RenderSystem extends CES.System {
+class RenderSystem extends ECS.System {
 
     constructor() {
         super()
+       console.log(this)
+    }
+    test (entity) {
+        console.log(entity)
+        return !!entity.components.position && !!entity.components.sprite
     }
 
-    update () {
-
-        const entities = this.world.getEntities('position', 'sprite')
-
-        entities.forEach(entity => {
-            console.log(entity)
-            const position = entity.getComponent('position')
-            ctx.fillStyle = entity.getComponent('sprite').color
-            ctx.arc(position.x, position.y, 15, 0, 2 * Math.PI)
-            ctx.fill()
-        })
+    update (entity) {
+        const {position, sprite} = entity.components
+        ctx.fillStyle = sprite.color
+        ctx.arc(position.x, position.y, 15, 0, 2 * Math.PI)
+        ctx.fill()
     }
 }
 

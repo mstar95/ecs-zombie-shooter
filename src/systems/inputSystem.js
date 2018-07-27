@@ -1,19 +1,10 @@
-import CES from 'ces'
+import ECS from 'yagl-ecs'
 import { getInputXAxis, getInputYAxis } from '../input'
 
-class RenderSystem extends CES.System {
+class RenderSystem extends ECS.System {
 
-    constructor() {
-        super()
-    }
-
-    update () {
-
-        const entities = this.world.getEntities('movement', 'hero')
-        entities.forEach(entity => {
-            const movement = entity.getComponent('movement')
-
-        })
+    update (entity) {
+        
     }
 }
 
