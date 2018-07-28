@@ -14,7 +14,7 @@ class InputSystem extends ECS.System {
 
     update (entity) {
         const { movement } = entity.components
-        const { vx, vy } = normalizeVectors(getX(), getY())
+        const { x: vx, y: vy } = normalizeVectors(getX(), getY())
         movement.x = vx * movement.velocity
         movement.y = vy * movement.velocity
     }

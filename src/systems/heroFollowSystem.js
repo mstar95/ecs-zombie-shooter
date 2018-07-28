@@ -29,7 +29,7 @@ class HeroFollowSystem extends ECS.System {
             const { movement, position } = entity.components
             const x = vector(this.heroPositionCache.x, position.x)
             const y = vector(this.heroPositionCache.y, position.y)
-            const { vx, vy } = normalizeVectors(x, y)
+            const { x: vx, y: vy } = normalizeVectors(x, y)
             movement.x = vx * movement.velocity
             movement.y = vy * movement.velocity
         }
