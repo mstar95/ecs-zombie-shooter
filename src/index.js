@@ -7,6 +7,7 @@ import MovementSystem from './systems/movementSystem';
 import InputSystem from './systems/inputSystem';
 import DebugSystem from './systems/debugSystem';
 import ZombieSpawnerSystem from './systems/zombieSpawnerSystem';
+import HeroFollowSystem from './systems/heroFollowSystem';
 
 const ecs = new ECS();
 
@@ -19,8 +20,9 @@ ecs.addEntity(hero())
 
 ecs.addSystem(new InputSystem)
 ecs.addSystem(new MovementSystem)
+ecs.addSystem(new HeroFollowSystem())
 ecs.addSystem(new RenderSystem())
-ecs.addSystem(new ZombieSpawnerSystem(ecs))
 ecs.addSystem(new DebugSystem())
+ecs.addSystem(new ZombieSpawnerSystem(ecs))
 
 gameLoop()

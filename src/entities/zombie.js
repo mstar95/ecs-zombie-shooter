@@ -5,7 +5,6 @@ import movement from '../components/movement'
 import enemy from '../components/enemy'
 
 export default function zombie (x, y) {
-    console.log(x,y)
     return Entity(
         position(x, y),
         movement(3),

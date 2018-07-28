@@ -2,6 +2,10 @@ import ECS from 'yagl-ecs'
 
 class MovementSystem extends ECS.System {
 
+    constructor() {
+        super()
+    }
+
     test (entity) {
         return !!entity.components.position && !!entity.components.movement
     }
