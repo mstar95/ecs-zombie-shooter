@@ -1,7 +1,5 @@
 import ECS from 'yagl-ecs'
-import { HEIGHT, WIDTH } from '../canvas'
-import zombie from '../entities/zombie';
-import { vector, normalizeVector } from '../lib/math';
+import { vector, normalizeVector, angle } from '../lib/math';
 
 class HeroFollowSystem extends ECS.System {
 
@@ -24,12 +22,14 @@ class HeroFollowSystem extends ECS.System {
 
     update (entity) {
         if (!!entity.components.enemy) {
-            const { movement, position } = entity.components
+            const { movement, position, rotation } = entity.components
             const x = vector(this.heroPositionCache.x, position.x)
             const y = vector(this.heroPositionCache.y, position.y)
             const { x: vx, y: vy } = normalizeVector(x, y)
             movement.x = vx * movement.velocity
             movement.y = vy * movement.velocity
+            rotation.angle = angle(vx,vy)
+            console.log(vx, vy, rotation.angle)
         }
     }
 }

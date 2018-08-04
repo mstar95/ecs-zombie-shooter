@@ -22,3 +22,11 @@ export function normalizeVector (x, y) {
 export function addVectors (v1, v2) {
     return { x: v1.x + v2.x, y: v1.y + v2.y }
 }
+
+export function radians(degrees) {
+  return degrees * (Math.PI/180);
+}
+
+export function angle(x, y) {
+    return Math.atan2(y, x)
+}
