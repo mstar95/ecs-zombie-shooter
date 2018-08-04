@@ -10,7 +10,7 @@ export default function hero () {
     return Entity(
         position(WIDTH / 2, HEIGHT / 2),
         movement(5),
-        sprite("red"),
+        sprite('hero.png'),
         heroComponent()
     )
 }

@@ -1,6 +1,6 @@
-export default function sprite(color) {
+export default function sprite (src) {
     return {
         name: 'sprite',
-        defaults: { color: color}
+        defaults: { src: src }
     }
 }

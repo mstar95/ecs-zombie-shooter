@@ -35,7 +35,7 @@ const config = {
   ],
   devServer: {
     stats: 'minimal',
-    contentBase: 'src/frontend/assets',
+    contentBase: 'src/assets',
     overlay: true,
     historyApiFallback: true
   },

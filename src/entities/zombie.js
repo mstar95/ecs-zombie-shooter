@@ -7,8 +7,8 @@ import enemy from '../components/enemy'
 export default function zombie (x, y) {
     return Entity(
         position(x, y),
-        movement(3),
-        sprite("green"),
+        movement(2),
+        sprite('zombie.png'),
         enemy()
     )
 }
