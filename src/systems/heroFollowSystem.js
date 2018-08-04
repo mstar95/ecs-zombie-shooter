@@ -1,9 +1,7 @@
 import ECS from 'yagl-ecs'
 import { HEIGHT, WIDTH } from '../canvas'
 import zombie from '../entities/zombie';
-import { vector, normalizeVectors } from '../lib/math';
-
-const numberOfZombies = 10
+import { vector, normalizeVector } from '../lib/math';
 
 class HeroFollowSystem extends ECS.System {
 
@@ -29,7 +27,7 @@ class HeroFollowSystem extends ECS.System {
             const { movement, position } = entity.components
             const x = vector(this.heroPositionCache.x, position.x)
             const y = vector(this.heroPositionCache.y, position.y)
-            const { x: vx, y: vy } = normalizeVectors(x, y)
+            const { x: vx, y: vy } = normalizeVector(x, y)
             movement.x = vx * movement.velocity
             movement.y = vy * movement.velocity
         }

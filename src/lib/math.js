@@ -1,14 +1,20 @@
 export function vector (x1, x2) {
-    const val = distance(x1, x2)
+    const val = length1D(x1, x2)
     const sign = Math.sign(x1) * Math.sign(x2)
     return val * sign
 }
 
-export function distance (x1, x2) {
+export function length1D (x1, x2) {
     return Math.abs(x1) - Math.abs(x2)
 }
 
-export function normalizeVectors (x, y) {
+export function length2D (p1, p2) {
+    const x = length1D(p1.x, p2.x)
+    const y = length1D(p1.y, p2.y)
+    return Math.sqrt(x * x + y * y)
+}
+
+export function normalizeVector (x, y) {
     const c = Math.sqrt(x * x + y * y)
     return c ? { x: x / c, y: y / c } : { x: 0, y: 0 }
 }

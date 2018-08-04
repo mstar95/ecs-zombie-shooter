@@ -17,7 +17,7 @@ class ZombieSpawnerSystem extends ECS.System {
 
     preUpdate () {
         const x = numberOfZombies - this.entities.length
-        if (x && Math.random() * 50 < x) {
+        if (x && Math.random() * 1 < x) {
             this.spawn()
         }
     }

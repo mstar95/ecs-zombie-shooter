@@ -1,6 +1,6 @@
 import ECS from 'yagl-ecs'
 import { getX, getY } from '../input'
-import { normalizeVectors } from '../lib/math';
+import { normalizeVector } from '../lib/math';
 
 class InputSystem extends ECS.System {
 
@@ -14,7 +14,7 @@ class InputSystem extends ECS.System {
 
     update (entity) {
         const { movement } = entity.components
-        const { x: vx, y: vy } = normalizeVectors(getX(), getY())
+        const { x: vx, y: vy } = normalizeVector(getX(), getY())
         movement.x = vx * movement.velocity
         movement.y = vy * movement.velocity
     }

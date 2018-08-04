@@ -1,7 +1,10 @@
 import ECS from 'yagl-ecs'
-import { vector, normalizeVectors, addVectors, distance } from '../lib/math';
+import { vector, normalizeVector, addVectors, length2D } from '../lib/math';
 
-const AVOID_COLLISION_SPEED = -3
+const AVOID_COLLISION_SPEED = - 3
+const DEFAULT_SIZE = 15
+const epsilon = 2
+const PUSH_BACK_CONST = 100
 
 class avoidCollisionSystem extends ECS.System {
 
@@ -21,34 +24,31 @@ class avoidCollisionSystem extends ECS.System {
                 .filter(collision => willCollide(entity, collision))
                 .forEach(collision => {
                     const { movement, position } = entity.components
-                    const {position: collisionPos} = collision.components
+                    const { position: collisionPos } = collision.components
                     const x = vector(collisionPos.x, position.x)
                     const y = vector(collisionPos.y, position.y)
-                    const { x: vx, y: vy } = normalizeVectors(x, y)
-                    movement.x += vx * AVOID_COLLISION_SPEED
-                    movement.y += vy * AVOID_COLLISION_SPEED
+                    const { x: vx, y: vy } = normalizeVector(x, y)
+                    const lenght = length2D(position, collisionPos)
+                    const pushBackPwr = pushBackPower(lenght)
+                    movement.x += vx * pushBackPwr
+                    movement.y += vy * pushBackPwr
                 })
         }
     }
 }
-
-const DEFAULT_SIZE = 15
-const epsilon = 5 
 
 function willCollide (e1, e2) {
     const { movement: m1, position: p1 } = e1.components
     const { movement: m2, position: p2 } = e2.components
     const nextP1 = addVectors(m1, p1)
     const nextP2 = addVectors(m2, p2)
-    const minDistance = e2.components.hero ? DEFAULT_SIZE * 2 :  DEFAULT_SIZE * 2 + epsilon
-    const distance = dist(nextP1, nextP2)
+    const minDistance = e2.components.hero ? DEFAULT_SIZE * 2 : DEFAULT_SIZE * 2 + epsilon
+    const distance = length2D(nextP1, nextP2)
     return distance < minDistance
 }
 
-function dist (p1, p2) {
-    const x = distance(p1.x, p2.x)
-    const y = distance(p1.y, p2.y)
-    return Math.sqrt(x * x + y * y)
+function pushBackPower (r) {
+    return - PUSH_BACK_CONST / r
 }
 
 export default avoidCollisionSystem
