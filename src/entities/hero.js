@@ -13,6 +13,6 @@ export default function hero () {
         movement(5),
         sprite('hero.png'),
         heroComponent(),
-        rotation(90)
+        rotation(0)
     )
 }

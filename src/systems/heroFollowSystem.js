@@ -29,7 +29,6 @@ class HeroFollowSystem extends ECS.System {
             movement.x = vx * movement.velocity
             movement.y = vy * movement.velocity
             rotation.angle = angle(vx,vy)
-            console.log(vx, vy, rotation.angle)
         }
     }
 }
