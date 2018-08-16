@@ -15,7 +15,7 @@ class avoidCollisionSystem extends ECS.System {
     }
 
     test (entity) {
-        return !!entity.components.position
+        return !!entity.components.hero || !!entity.components.enemy
     }
 
     update (entity) {

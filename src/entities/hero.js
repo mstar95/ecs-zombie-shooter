@@ -6,6 +6,7 @@ import position from '../components/position'
 import heroComponent from '../components/hero'
 import movement from '../components/movement'
 import rotation from '../components/rotation';
+import weapon, { SLOW } from '../components/weapon';
 
 export default function hero () {
     return Entity(
@@ -13,6 +14,7 @@ export default function hero () {
         movement(5),
         sprite('hero.png'),
         heroComponent(),
-        rotation(0)
+        rotation(0),
+        weapon(SLOW, 2, 10)
     )
 }

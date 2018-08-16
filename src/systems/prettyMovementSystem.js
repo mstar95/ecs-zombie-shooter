@@ -26,7 +26,6 @@ class PrettyMovementSystem extends ECS.System {
         const { rotation, movement } = entity.components
         if (movement.x != 0 || movement.y != 0) {
             rotation.angle += RADIAN_360 * this.lean
-            console.log(rotation.angle)
         }
     }
 }
