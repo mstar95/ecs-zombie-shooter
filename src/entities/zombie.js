@@ -4,6 +4,7 @@ import position from '../components/position'
 import movement from '../components/movement'
 import enemy from '../components/enemy'
 import rotation from '../components/rotation';
+import size from '../components/size';
 
 export default function zombie (x, y) {
     return Entity(
@@ -11,6 +12,7 @@ export default function zombie (x, y) {
         movement(2),
         sprite('zombie.png'),
         enemy(),
-        rotation(0)
+        rotation(0),
+        size(15)
     )
 }

@@ -30,7 +30,6 @@ class ShootSystem extends ECS.System {
         movement.x = Math.cos(rotation.angle) * weapon.velocity
         movement.y = Math.sin(rotation.angle) * weapon.velocity
         movement.velocity = weapon.velocity
-        console.log(movement)
         this.ecs.addEntity(bullet)
     }
 

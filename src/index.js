@@ -8,10 +8,11 @@ import InputSystem from './systems/inputSystem';
 import DebugSystem from './systems/debugSystem';
 import ZombieSpawnerSystem from './systems/zombieSpawnerSystem';
 import HeroFollowSystem from './systems/heroFollowSystem';
-import avoidCollisionSystem from './systems/avoidCollisionSystem';
 import PrettyMovementSystem from './systems/prettyMovementSystem';
 import { loadAssets } from './loadAssets/load'
 import ShootSystem from './systems/shootSystem';
+import AvoidCollisionSystem from './systems/avoidCollisionSystem';
+import BulletCollisionSystem from './systems/bulletCollisionSystem';
 
 
 const ecs = new ECS();
@@ -26,8 +27,9 @@ ecs.addEntity(hero())
 ecs.addSystem(new InputSystem)
 ecs.addSystem(new MovementSystem)
 ecs.addSystem(new HeroFollowSystem())
-ecs.addSystem(new avoidCollisionSystem)
+ecs.addSystem(new AvoidCollisionSystem)
 ecs.addSystem(new ShootSystem(ecs))
+ecs.addSystem(new BulletCollisionSystem(ecs))
 ecs.addSystem(new PrettyMovementSystem())
 ecs.addSystem(new RenderSystem())
 ecs.addSystem(new DebugSystem())

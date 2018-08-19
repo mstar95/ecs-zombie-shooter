@@ -1,12 +1,13 @@
 import ECS from 'yagl-ecs'
 import { vector, normalizeVector, addVectors, length2D } from '../lib/math';
+import collsion from '../lib/collision';
 
 const AVOID_COLLISION_SPEED = - 3
 const DEFAULT_SIZE = 15
 const epsilon = 2
 const PUSH_BACK_CONST = 100
 
-class avoidCollisionSystem extends ECS.System {
+class AvoidCollisionSystem extends ECS.System {
 
     constructor(ecs) {
         super()
@@ -42,13 +43,11 @@ function willCollide (e1, e2) {
     const { movement: m2, position: p2 } = e2.components
     const nextP1 = addVectors(m1, p1)
     const nextP2 = addVectors(m2, p2)
-    const minDistance = e2.components.hero ? DEFAULT_SIZE * 2 : DEFAULT_SIZE * 2 + epsilon
-    const distance = length2D(nextP1, nextP2)
-    return distance < minDistance
+    return collsion({ ...nextP1, size: DEFAULT_SIZE }, { ...nextP2, size: DEFAULT_SIZE }, e2.components.hero ? 0 : epsilon)
 }
 
 function pushBackPower (r) {
     return - PUSH_BACK_CONST / r
 }
 
-export default avoidCollisionSystem
+export default AvoidCollisionSystem
