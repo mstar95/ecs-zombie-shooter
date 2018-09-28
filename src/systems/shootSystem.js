@@ -25,11 +25,8 @@ class ShootSystem extends ECS.System {
     shot({ position: sourcePos, rotation, weapon }) {
         const bullet = bulletEntity()
         const { position, movement } = bullet.components
-        position.x = sourcePos.x
-        position.y = sourcePos.y
-        movement.x = Math.cos(rotation.angle) * weapon.velocity
-        movement.y = Math.sin(rotation.angle) * weapon.velocity
-        movement.velocity = weapon.velocity
+        setPosition(position, sourcePos)
+        setMovement(movement, rotation, weapon)
         this.ecs.addEntity(bullet)
     }
 
@@ -47,3 +44,14 @@ class ShootSystem extends ECS.System {
 }
 
 export default ShootSystem
+
+function setMovement (movement, rotation, weapon) {
+    movement.x = Math.cos(rotation.angle) * weapon.velocity;
+    movement.y = Math.sin(rotation.angle) * weapon.velocity;
+    movement.velocity = weapon.velocity;
+}
+
+function setPosition (position, sourcePos) {
+    position.x = sourcePos.x;
+    position.y = sourcePos.y;
+}

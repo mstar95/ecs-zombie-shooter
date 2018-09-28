@@ -1,5 +1,5 @@
 import ECS from 'yagl-ecs'
-import { vector, normalizeVector, addVectors, length2D } from '../lib/math';
+import { vector1D, normalizeVector, addVectors, length2D } from '../lib/math';
 import collsion from '../lib/collision';
 
 const AVOID_COLLISION_SPEED = - 3
@@ -24,18 +24,26 @@ class AvoidCollisionSystem extends ECS.System {
             this.entities.filter(collision => collision.id != entity.id)
                 .filter(collision => willCollide(entity, collision))
                 .forEach(collision => {
-                    const { movement, position } = entity.components
-                    const { position: collisionPos } = collision.components
-                    const x = vector(collisionPos.x, position.x)
-                    const y = vector(collisionPos.y, position.y)
-                    const { x: vx, y: vy } = normalizeVector(x, y)
-                    const lenght = length2D(position, collisionPos)
-                    const pushBackPwr = pushBackPower(lenght)
-                    movement.x += vx * pushBackPwr
-                    movement.y += vy * pushBackPwr
+                    avoidCollision(entity, collision);
                 })
         }
     }
+}
+
+function avoidCollision (entity, collision) {
+    const { movement, position } = entity.components
+    const { position: collisionPos } = collision.components
+    const { x: vx, y: vy } = direction(collisionPos, position)
+    const lenght = length2D(position, collisionPos)
+    const pushBackPwr = pushBackPower(lenght)
+    movement.x += vx * pushBackPwr
+    movement.y += vy * pushBackPwr
+}
+
+function direction (collisionPos, position) {
+    const x = vector1D(collisionPos.x, position.x);
+    const y = vector1D(collisionPos.y, position.y);
+    return normalizeVector(x, y)
 }
 
 function willCollide (e1, e2) {

@@ -1,5 +1,5 @@
 import ECS from 'yagl-ecs'
-import { vector, normalizeVector, angle } from '../lib/math';
+import { vector1D, normalizeVector, angle } from '../lib/math';
 
 class HeroFollowSystem extends ECS.System {
 
@@ -23,8 +23,8 @@ class HeroFollowSystem extends ECS.System {
     update (entity) {
         if (!!entity.components.enemy) {
             const { movement, position, rotation } = entity.components
-            const x = vector(this.heroPositionCache.x, position.x)
-            const y = vector(this.heroPositionCache.y, position.y)
+            const x = vector1D(this.heroPositionCache.x, position.x)
+            const y = vector1D(this.heroPositionCache.y, position.y)
             const { x: vx, y: vy } = normalizeVector(x, y)
             movement.x = vx * movement.velocity
             movement.y = vy * movement.velocity

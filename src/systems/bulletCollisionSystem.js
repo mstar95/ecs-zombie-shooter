@@ -16,12 +16,16 @@ class BulletCollisionSystem extends ECS.System {
 
     update (entity) {
         if (!!entity.components.enemy) {
-            const bullet = this.entities.filter(collision => !!collision.components.bullet)
-                .find(collision => willCollide(entity, collision))
-            if (bullet) {
-                this.ecs.removeEntity(entity)
-                this.ecs.removeEntity(bullet)
-            }
+            this.updateEnemy(entity);
+        }
+    }
+
+    updateEnemy (entity) {
+        const bullet = this.entities.filter(collision => !!collision.components.bullet)
+            .find(collision => willCollide(entity, collision))
+        if (bullet) {
+            this.ecs.removeEntity(entity);
+            this.ecs.removeEntity(bullet);
         }
     }
 }

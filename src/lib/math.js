@@ -1,4 +1,4 @@
-export function vector (x1, x2) {
+export function vector1D (x1, x2) {
     const val = length1D(x1, x2)
     const sign = Math.sign(x1) * Math.sign(x2)
     return val * sign

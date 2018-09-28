@@ -1,6 +1,6 @@
 import ECS from 'yagl-ecs'
 import { getX, getY, mouse } from '../input'
-import { normalizeVector, vector, angle } from '../lib/math';
+import { normalizeVector, vector1D, angle } from '../lib/math';
 
 class InputSystem extends ECS.System {
 
@@ -27,8 +27,8 @@ function updateMovement (entity) {
 
 function updateRotation (entity) {
     const { position, rotation } = entity.components
-    const x = vector(mouse.x, position.x)
-    const y = vector(mouse.y, position.y)
+    const x = vector1D(mouse.x, position.x)
+    const y = vector1D(mouse.y, position.y)
     const { x: vx, y: vy } = normalizeVector(x, y)
     rotation.angle = angle(vx, vy)
 }
