@@ -13,6 +13,9 @@ import { loadAssets } from './loadAssets/load'
 import ShootSystem from './systems/shootSystem';
 import AvoidCollisionSystem from './systems/avoidCollisionSystem';
 import BulletCollisionSystem from './systems/bulletCollisionSystem';
+import { setHealth } from './output';
+import OutputSystem from './systems/outputSystem';
+import MeleeEnemyAttackSystem from './systems/meleeEnemyAttackSystem';
 
 
 const ecs = new ECS();
@@ -28,12 +31,14 @@ ecs.addSystem(new InputSystem)
 ecs.addSystem(new MovementSystem)
 ecs.addSystem(new HeroFollowSystem())
 ecs.addSystem(new AvoidCollisionSystem)
+ecs.addSystem(new MeleeEnemyAttackSystem())
 ecs.addSystem(new ShootSystem(ecs))
 ecs.addSystem(new BulletCollisionSystem(ecs))
 ecs.addSystem(new PrettyMovementSystem())
 ecs.addSystem(new RenderSystem())
 ecs.addSystem(new DebugSystem())
 ecs.addSystem(new ZombieSpawnerSystem(ecs))
+ecs.addSystem(new OutputSystem())
 
 loadAssets()
     .then(gameLoop)

@@ -5,6 +5,8 @@ import movement from '../components/movement'
 import enemy from '../components/enemy'
 import rotation from '../components/rotation';
 import size from '../components/size';
+import health from '../components/health';
+import meleeAttacker from '../components/meleeAttacker';
 
 export default function zombie (x, y) {
     return Entity(
@@ -13,6 +15,8 @@ export default function zombie (x, y) {
         sprite('zombie.png'),
         enemy(),
         rotation(0),
-        size(15)
+        size(15),
+        health(50),
+        meleeAttacker(5, 20)
     )
 }

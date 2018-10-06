@@ -1,5 +1,4 @@
 import ECS from 'yagl-ecs'
-import { vector, normalizeVector, addVectors, length2D } from '../lib/math';
 import collsion from '../lib/collision';
 
 class BulletCollisionSystem extends ECS.System {
