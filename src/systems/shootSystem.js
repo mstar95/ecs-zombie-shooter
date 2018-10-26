@@ -6,7 +6,6 @@ class ShootSystem extends ECS.System {
 
     constructor(ecs) {
         super()
-        this.counter = 0
         this.ecs = ecs
     }
 
@@ -16,34 +15,33 @@ class ShootSystem extends ECS.System {
 
     update(entity) {
         const { weapon } = entity.components
-        if (mouse.down && this.checkInterval(weapon.interval)) {
-            this.shot(entity.components)
+        if (mouse.down && checkInterval(weapon)) {
+            shot(entity.components)
         }
-        this.count()
-    }
-
-    shot({ position: sourcePos, rotation, weapon }) {
-        const bullet = bulletEntity()
-        const { position, movement } = bullet.components
-        setPosition(position, sourcePos)
-        setMovement(movement, rotation, weapon)
-        this.ecs.addEntity(bullet)
-    }
-
-    checkInterval(interval) {
-        this.interval = interval
-        return this.counter == 0
-    }
-
-    count() {
-        if (this.interval && this.counter++ == this.interval) {
-            this.counter = 0
-            this.interval = null
-        }
+        count(weapon)
     }
 }
 
 export default ShootSystem
+
+function checkInterval(weapon) {
+    return weapon.counter == 0
+}
+
+function shot({ position: sourcePos, rotation, weapon }) {
+    const bullet = bulletEntity()
+    const { position, movement } = bullet.components
+    setPosition(position, sourcePos)
+    setMovement(movement, rotation, weapon)
+    this.ecs.addEntity(bullet)
+}
+
+
+function count(weapon) {
+    if (weapon.interval && weapon.counter++ == weapon.interval) {
+        weapon.counter = 0
+    }
+}
 
 function setMovement (movement, rotation, weapon) {
     movement.x = Math.cos(rotation.angle) * weapon.velocity;

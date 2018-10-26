@@ -4,6 +4,6 @@ export const MEDIUM = 30
 export default function weapon (interval, damage, velocity) {
     return {
         name: 'weapon',
-        defaults: { interval, damage, velocity }
+        defaults: { interval, damage, velocity, counter: 0}
     }
 }
