@@ -13,10 +13,10 @@ import { loadAssets } from './loadAssets/load'
 import ShootSystem from './systems/shootSystem';
 import AvoidCollisionSystem from './systems/avoidCollisionSystem';
 import BulletCollisionSystem from './systems/bulletCollisionSystem';
-import { setHealth } from './output';
 import OutputSystem from './systems/outputSystem';
 import MeleeEnemyAttackSystem from './systems/meleeEnemyAttackSystem';
-
+import HeroPropsToWeaponsSystem from './systems/heroPropsToWeaponsSystem';
+import weapon from './entities/weapon';
 
 const ecs = new ECS();
 
@@ -26,12 +26,14 @@ function gameLoop () {
 }
 
 ecs.addEntity(hero())
+ecs.addEntity(weapon())
 
 ecs.addSystem(new InputSystem)
 ecs.addSystem(new MovementSystem)
 ecs.addSystem(new HeroFollowSystem())
 ecs.addSystem(new AvoidCollisionSystem)
 ecs.addSystem(new MeleeEnemyAttackSystem())
+ecs.addSystem(new HeroPropsToWeaponsSystem(ecs))
 ecs.addSystem(new ShootSystem(ecs))
 ecs.addSystem(new BulletCollisionSystem(ecs))
 ecs.addSystem(new PrettyMovementSystem())

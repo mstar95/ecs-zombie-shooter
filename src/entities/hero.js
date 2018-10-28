@@ -6,7 +6,6 @@ import position from '../components/position'
 import heroComponent from '../components/hero'
 import movement from '../components/movement'
 import rotation from '../components/rotation';
-import weapon, { SLOW, MEDIUM } from '../components/weapon';
 import health from '../components/health';
 import size from '../components/size';
 
@@ -17,7 +16,6 @@ export default function hero () {
         sprite('hero.png'),
         heroComponent(),
         rotation(0),
-        weapon(MEDIUM, 2, 10),
         health(100),
         size(15)
     )

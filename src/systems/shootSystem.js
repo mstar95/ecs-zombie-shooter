@@ -10,15 +10,23 @@ class ShootSystem extends ECS.System {
     }
 
     test(entity) {
-        return !!entity.components.hero
+        return !!entity.components.weapon
     }
 
     update(entity) {
         const { weapon } = entity.components
         if (mouse.down && checkInterval(weapon)) {
-            shot(entity.components)
+            this.shot(entity.components)
         }
         count(weapon)
+    }
+
+     shot({ position: sourcePos, rotation, weapon }) {
+        const bullet = bulletEntity()
+        const { position, movement } = bullet.components
+        setPosition(position, sourcePos)
+        setMovement(movement, rotation, weapon)
+        this.ecs.addEntity(bullet)
     }
 }
 
@@ -27,15 +35,6 @@ export default ShootSystem
 function checkInterval(weapon) {
     return weapon.counter == 0
 }
-
-function shot({ position: sourcePos, rotation, weapon }) {
-    const bullet = bulletEntity()
-    const { position, movement } = bullet.components
-    setPosition(position, sourcePos)
-    setMovement(movement, rotation, weapon)
-    this.ecs.addEntity(bullet)
-}
-
 
 function count(weapon) {
     if (weapon.interval && weapon.counter++ == weapon.interval) {
